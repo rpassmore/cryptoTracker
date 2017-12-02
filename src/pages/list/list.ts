@@ -52,7 +52,7 @@ export class ListPage {
   }
 
   public ngOnInit() {
-    setInterval(() => this.getCurrentCurrenciesData(), this.REFRESH_HOURS * 60 * 60 * 1000);
+    //setInterval(() => this.getCurrentCurrenciesData(), this.REFRESH_HOURS * 60 * 60 * 1000);
 
     this.getCurrentCurrenciesData();
   }
@@ -62,10 +62,34 @@ export class ListPage {
     this._currenciesProvider.getCurrencies().subscribe(data => this.currencies = data);    
   } 
 
+  public getIcon(symbol:String):String {
+    return "../../assets/imgs/coinSymbols/" + symbol + ".png";
+  }  
+
+  public getPercentChangedColour(change:number):String {
+    var result:String = "yellow";    
+    if(change > 0) {
+     result = "green";
+    } else if(change < 0) {
+     result = "red";
+    }
+    return result;
+  }
+
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.getCurrentCurrenciesData();   
+    setTimeout(() => {
+         
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
+    //this.navCtrl.push(ListPage, {
+    //  item: item
+    //});
   }
 }

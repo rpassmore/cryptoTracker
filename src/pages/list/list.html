@@ -8,15 +8,24 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>  
+  
   <ion-list>
     <ion-item *ngFor="let currency of currencies">
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/coinSymbols/{{currency.symbol}}.svg">
+      </ion-avatar>
       <h2>{{currency.symbol}} : {{currency.name}}</h2>
-      <p>$ {{currency.price_usd}}</p>      
-      <ion-note item-end>
-        <p>1hr: $ {{currency.percent_change_1h}}</p>
-        <p>24hr: $ {{currency.percent_change_24h}}</p>
-        <p>7d: $ {{currency.percent_change_7d}}</p>
+      <p>{{currency.price_usd}} $</p> 
+      <ion-note item-end>      
+        <p [ngStyle]="{'color': getPercentChangedColour(currency.percent_change_1h)}">1hr: {{currency.percent_change_1h}} $</p>
+        <p [ngStyle]="{'color': getPercentChangedColour(currency.percent_change_24h)}">24hr: {{currency.percent_change_24h}} $</p>
+        <p [ngStyle]="{'color': getPercentChangedColour(currency.percent_change_7d)}">7d: {{currency.percent_change_7d}} $</p>
       </ion-note>      
     </ion-item>
   </ion-list>
+    
 </ion-content>

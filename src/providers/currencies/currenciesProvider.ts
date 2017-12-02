@@ -1,4 +1,3 @@
-//import { HttpClient } from '@angular/common/http';
 import { Headers, Http, Response, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
@@ -26,18 +25,13 @@ export class CurrenciesProvider {
   }
 
   /**
- * 
- */
-public getCurrencies(): Observable<Currency[]> {
-  return this.http.get(`${this.baseUrl}`).map(res => res.json() as Currency[])
-  .do(data => console.log('All: ' + JSON.stringify(data)))
-  .catch(handleError);
-
-  //return this.http.get(`${this.baseUrl}`)
-  //.map((res: Response) => res.json().content as Currency[])
-  //.do(data => console.log('All: ' + JSON.stringify(data)))
-  //.catch(handleError);
-}
+  * 
+  */
+  public getCurrencies(): Observable<Currency[]> {
+    return this.http.get(`${this.baseUrl}`).map(res => res.json() as Currency[])
+    //.do(data => console.log('All: ' + JSON.stringify(data)))
+    .catch(handleError);
+  }
 }
 
 // this could also be a private method of the component class
