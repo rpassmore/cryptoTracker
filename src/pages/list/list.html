@@ -9,15 +9,14 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
+    <ion-item *ngFor="let currency of currencies">
+      <h2>{{currency.symbol}} : {{currency.name}}</h2>
+      <p>$ {{currency.price_usd}}</p>      
+      <ion-note item-end>
+        <p>1hr: $ {{currency.percent_change_1h}}</p>
+        <p>24hr: $ {{currency.percent_change_24h}}</p>
+        <p>7d: $ {{currency.percent_change_7d}}</p>
+      </ion-note>      
+    </ion-item>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
 </ion-content>
