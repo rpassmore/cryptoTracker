@@ -16,7 +16,7 @@
   <ion-list>
     <ion-item *ngFor="let currency of currencies">
       <ion-avatar item-start>
-        <img src="../../assets/imgs/coinSymbols/{{currency.symbol}}.svg">
+        <img src="../../assets/imgs/coinSymbols/{{currency.symbol}}.svg" alt="No Icon!">
       </ion-avatar>
       <h2>{{currency.symbol}} : {{currency.name}}</h2>
       <p>{{currency.price_usd}} $</p> 
